@@ -1,4 +1,4 @@
-SKRox!
+# SKRox - The Ultimate Dating app for Short Kings
 
 Wireframes
 
