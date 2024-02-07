@@ -6,6 +6,8 @@ require("./config/database");
 const express = require("express");
 const path = require("path");
 const logger = require("morgan");
+
+//routers
 const usersRouter = require("./routes/usersRouter");
 
 //express app

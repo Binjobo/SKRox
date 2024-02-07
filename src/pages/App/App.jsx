@@ -14,20 +14,24 @@ export default function App() {
     <>
       {user ? (
         <>
-          <div className="flex">
+          <div>
             <Routes>
-              <Route path="/dashboard" element={<Homepage />} />
+              <Route path="/" element={<Homepage />} />
             </Routes>
           </div>
         </>
       ) : (
         <AuthPage setUser={setUser} />
       )}
-      <div className="fixed right-0 bottom-0">
-        <button className="bg-jade-300" onClick={handleClick}>
+      <div>
+        <button className="toggleButton" onClick={handleClick}>
           Tmp button to toggle setUser state
         </button>
       </div>
     </>
   );
 }
+
+// export default function App() {
+//   return <>lalala</>;
+// }
