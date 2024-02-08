@@ -26,10 +26,16 @@ const create = async (req, res) => {
     return res.status(400).json({ error: "Email already in use" });
   }
 
-  console.log(data);
+  if (data.gender === "male" && data.height > 165) {
+    return res
+      .status(400)
+      .json({ error: "Too tall for a male, max height is 165cm" });
+  }
 
-  if (data.height > 165) {
-    return res.status(400).json({ error: "Height should be 165 or below" });
+  if (data.gender === "female" && data.height > 155) {
+    return res
+      .status(400)
+      .json({ error: "Too tall for a female, max height is 155cm" });
   }
 
   if (data.password.trim().length < 3) {

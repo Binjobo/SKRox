@@ -8,6 +8,7 @@ export default function SignUpForm({ setIsNewAccount }) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    gender: "",
     height: "",
     password: "",
     confirm: "",
@@ -48,11 +49,20 @@ export default function SignUpForm({ setIsNewAccount }) {
             error:
               "Email has already been used. Please choose a different email.",
           });
-        } else if (errorData.error === "Height should be 165 or below") {
+        } else if (
+          errorData.error === "Too tall for a male, max height is 165cm"
+        ) {
           setFormData({
             ...formData,
             error:
-              "You are too freaking tall! This is not the place for yer bruh",
+              "Dude you are too tall! Perhaps this is not the place for yer.",
+          });
+        } else if (
+          errorData.error === "Too tall for a female, max height is 155cm"
+        ) {
+          setFormData({
+            ...formData,
+            error: "Yer tall gal! Find your prince charming elsewhere please ~",
           });
         } else {
           setFormData({ ...formData, error: "Something failed" });
@@ -96,12 +106,25 @@ export default function SignUpForm({ setIsNewAccount }) {
             />
           </div>
           <div>
-            <label htmlFor="user-height">Your Height</label>
+            <label htmlFor="user-gender">Your gender</label>
+            <select
+              className="user-gender"
+              name="gender"
+              value={formData.gender}
+              onChange={handleChange}
+            >
+              <option value="">Select Gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+          <div>
+            <label htmlFor="user-height">Your height</label>
             <input
               type="height"
               name="height"
               id="height"
-              placeholder="your real height in cm"
+              placeholder="your REAL height in cm"
               value={formData.height}
               onChange={handleChange}
               required=""

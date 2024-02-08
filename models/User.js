@@ -13,6 +13,10 @@ const userSchema = new Schema(
       lowercase: true,
       required: true,
     },
+    gender: {
+      type: String,
+      required: true,
+    },
     height: {
       type: Number,
       required: true,
