@@ -48,9 +48,7 @@ export default function LoginForm({ setIsNewAccount, setUser }) {
       <h1 className="logIn">Log in to your account:</h1>
       <form action="#" autoComplete="off" onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="email" className="block mb-2 text-sm font-medium">
-            Your email
-          </label>
+          <label htmlFor="email">Your email</label>
           <input
             type="email"
             name="email"
@@ -77,7 +75,7 @@ export default function LoginForm({ setIsNewAccount, setUser }) {
         <p>
           Don’t have an account yet? <span onClick={handleClick}>Sign up</span>
         </p>
-        {error && <p className="text-jade-500">{error}</p>}
+        {error && <p>{error}</p>}
       </form>
     </section>
   );
