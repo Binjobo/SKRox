@@ -92,7 +92,7 @@ export default function SignUpForm({ setIsNewAccount }) {
     <div>
       <section>
         <h1>Create an account</h1>
-        <form action="#" autoComplete="off" onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <div>
             <label htmlFor="user-name">Your username</label>
             <input
