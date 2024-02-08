@@ -73,7 +73,7 @@ export default function LoginForm({ setIsNewAccount, setUser }) {
         </div>
         <button type="submit">Sign in</button>
         <p>
-          Don’t have an account yet?{" "}
+          Sign up if yer havn&apos;t done so!
           <button onClick={handleClick}>Sign up</button>
         </p>
         {error && <p>{error}</p>}
