@@ -39,7 +39,7 @@ const create = async (req, res) => {
   }
 
   if (data.password.trim().length < 3) {
-    res.status(400).json({ msg: "password too short" });
+    res.status(400).json({ error: "password too short" });
     return;
   }
 

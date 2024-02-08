@@ -28,6 +28,11 @@ export default function SignUpForm({ setIsNewAccount }) {
 
     const { ...dataToSend } = formData;
 
+    if (!formData.gender) {
+      setFormData({ ...formData, error: "Please select a gender" });
+      return;
+    }
+
     try {
       const response = await fetch("/api/users/signup", {
         method: "POST",
@@ -64,9 +69,16 @@ export default function SignUpForm({ setIsNewAccount }) {
             ...formData,
             error: "Yer tall gal! Find your prince charming elsewhere please ~",
           });
-        } else {
-          setFormData({ ...formData, error: "Something failed" });
+        } else if (errorData.error === "password too short") {
+          setFormData({
+            ...formData,
+            error:
+              "Password too short. Please input a password that are at least 3 characters",
+          });
         }
+        // else {
+        //   setFormData({ ...formData, error: "Something failed" });
+        // }
       }
     } catch (error) {
       setFormData({ ...formData, error: "Something failed" });
@@ -99,7 +111,7 @@ export default function SignUpForm({ setIsNewAccount }) {
               type="email"
               name="email"
               id="email"
-              placeholder="name@gmail.com"
+              placeholder="@something.com"
               value={formData.email}
               onChange={handleChange}
               required=""
@@ -136,7 +148,7 @@ export default function SignUpForm({ setIsNewAccount }) {
               type="password"
               name="password"
               id="password"
-              placeholder="••••••••"
+              placeholder="3 character or more"
               value={formData.password}
               onChange={handleChange}
               required=""
@@ -148,7 +160,7 @@ export default function SignUpForm({ setIsNewAccount }) {
               type="password"
               name="confirm"
               id="confirm"
-              placeholder="••••••••"
+              placeholder="3 character or more"
               value={formData.confirm}
               onChange={handleChange}
               required=""
@@ -158,7 +170,7 @@ export default function SignUpForm({ setIsNewAccount }) {
             Create an account
           </button>
           <p>
-            Already have an account?{" "}
+            Already have an account?
             <button onClick={handleClick}>Login here</button>
           </p>
         </form>

@@ -6,7 +6,7 @@ import NavBar from "../../components/NavBar";
 import ProfilePage from "../ProfilePage/ProfilePage";
 import PreferencePage from "../PreferencePage/PreferencePage";
 import MatchPage from "../MatchPage/MatchPage";
-import ChatPage from "../MatchPage/MatchPage";
+import ChatPage from "../ChatPage/ChatPage";
 
 export default function App() {
   const [user, setUser] = useState(false);
@@ -29,7 +29,7 @@ export default function App() {
               />
               <Route path="/profile" element={<ProfilePage />} />
               <Route path="/preference" element={<PreferencePage />} />{" "}
-              <Route path="/match" element={<MatchPage />} />{" "}
+              <Route path="/match" element={<MatchPage />} />
               <Route path="/chat" element={<ChatPage />} />
             </Routes>
           </div>
