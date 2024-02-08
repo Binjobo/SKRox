@@ -19,7 +19,7 @@ export default function ProfilePage() {
     });
   };
 
-  console.log(formData);
+  // console.log(formData);
 
   const handleSubmit = () => {
     console.log("submitted");
