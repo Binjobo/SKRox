@@ -55,10 +55,6 @@ export default function SignUpForm({ setIsNewAccount }) {
 
   const disable = formData.password !== formData.confirm;
 
-  const loginLinkStyle = {
-    cursor: "pointer",
-  };
-
   return (
     <div>
       <section>
@@ -82,7 +78,7 @@ export default function SignUpForm({ setIsNewAccount }) {
               type="email"
               name="email"
               id="email"
-              placeholder="name@company.com"
+              placeholder="name@gmail.com"
               value={formData.email}
               onChange={handleChange}
               required=""
@@ -94,7 +90,7 @@ export default function SignUpForm({ setIsNewAccount }) {
               type="height"
               name="height"
               id="height"
-              placeholder="height in cm"
+              placeholder="your real height in cm"
               value={formData.height}
               onChange={handleChange}
               required=""
@@ -129,9 +125,7 @@ export default function SignUpForm({ setIsNewAccount }) {
           </button>
           <p>
             Already have an account?{" "}
-            <span style={loginLinkStyle} onClick={handleClick}>
-              Login here
-            </span>
+            <button onClick={handleClick}>Login here</button>
           </p>
         </form>
 

@@ -6,10 +6,10 @@ export default function Homepage({ user, setUser }) {
     setUser(null);
   }
 
-  console.log(user.name);
+  console.log(user?.name);
   return (
     <>
-      Hi {user.name}
+      Hi {user.name}, height {user.height}
       <button className="logout" onClick={handleLogOut}>
         Log Out
       </button>

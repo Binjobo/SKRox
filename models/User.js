@@ -13,6 +13,12 @@ const userSchema = new Schema(
       lowercase: true,
       required: true,
     },
+    height: {
+      type: Number,
+      required: true,
+      min: 0,
+      max: 165,
+    },
     password: {
       type: String,
       trim: true,

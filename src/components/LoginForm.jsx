@@ -43,10 +43,6 @@ export default function LoginForm({ setIsNewAccount, setUser }) {
     }
   };
 
-  const loginLinkStyle = {
-    cursor: "pointer",
-  };
-
   return (
     <section>
       <h1 className="logIn">Log in to your account:</h1>
@@ -78,9 +74,7 @@ export default function LoginForm({ setIsNewAccount, setUser }) {
         <button type="submit">Sign in</button>
         <p>
           Don’t have an account yet?{" "}
-          <span style={loginLinkStyle} onClick={handleClick}>
-            Sign up
-          </span>
+          <button onClick={handleClick}>Sign up</button>
         </p>
         {error && <p>{error}</p>}
       </form>
