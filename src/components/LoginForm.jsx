@@ -72,6 +72,9 @@ export default function LoginForm({ setIsNewAccount, setUser }) {
           />
         </div>
         <button type="submit">Sign in</button>
+
+        <p>Log in with facebook</p>
+        <p>Log in with email</p>
         <p>
           Sign up if yer havn&apos;t done so!
           <button onClick={handleClick}>Sign up</button>
