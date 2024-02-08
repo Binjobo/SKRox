@@ -28,6 +28,10 @@ const create = async (req, res) => {
 
   console.log(data);
 
+  if (data.height > 165) {
+    return res.status(400).json({ error: "Height should be 165 or below" });
+  }
+
   if (data.password.trim().length < 3) {
     res.status(400).json({ msg: "password too short" });
     return;

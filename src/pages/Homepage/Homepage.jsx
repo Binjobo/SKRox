@@ -9,7 +9,7 @@ export default function Homepage({ user, setUser }) {
   console.log(user?.name);
   return (
     <>
-      Hi {user.name}, height {user.height}
+      Hi {user.name}, you have an amazing height of {user.height} cm!
       <button className="logout" onClick={handleLogOut}>
         Log Out
       </button>

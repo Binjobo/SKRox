@@ -41,11 +41,22 @@ export default function SignUpForm({ setIsNewAccount }) {
         localStorage.setItem("token", token.token);
         setFormData({ ...formData, error: "Account created successfully!" });
       } else {
-        setFormData({
-          ...formData,
-          error:
-            "Email has already been used. Please choose a different email.",
-        });
+        const errorData = await response.json();
+        if (errorData.error === "Email already in use") {
+          setFormData({
+            ...formData,
+            error:
+              "Email has already been used. Please choose a different email.",
+          });
+        } else if (errorData.error === "Height should be 165 or below") {
+          setFormData({
+            ...formData,
+            error:
+              "You are too freaking tall! This is not the place for yer bruh",
+          });
+        } else {
+          setFormData({ ...formData, error: "Something failed" });
+        }
       }
     } catch (error) {
       setFormData({ ...formData, error: "Something failed" });
