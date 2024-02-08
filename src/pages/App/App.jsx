@@ -5,6 +5,7 @@ import AuthPage from "./AuthPage/AuthPage";
 
 export default function App() {
   const [user, setUser] = useState(false);
+  console.log(user);
 
   const handleClick = () => {
     setUser(!user);
@@ -16,7 +17,10 @@ export default function App() {
         <>
           <div>
             <Routes>
-              <Route path="/" element={<Homepage />} />
+              <Route
+                path="/"
+                element={<Homepage user={user} setUser={setUser} />}
+              />
             </Routes>
           </div>
         </>
@@ -31,7 +35,3 @@ export default function App() {
     </>
   );
 }
-
-// export default function App() {
-//   return <>lalala</>;
-// }
