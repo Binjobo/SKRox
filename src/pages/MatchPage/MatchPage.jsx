@@ -126,9 +126,7 @@ function Advanced() {
           You swiped {lastDirection}
         </h2>
       ) : (
-        <h2 className="infoText">
-          Swipe a card or press a button to get Restore Card button visible!
-        </h2>
+        <h2 className="infoText">Swipe or Click to like/pass</h2>
       )}
     </div>
   );

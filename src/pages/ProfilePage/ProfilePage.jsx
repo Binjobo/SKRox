@@ -21,8 +21,26 @@ export default function ProfilePage() {
 
   // console.log(formData);
 
-  const handleSubmit = () => {
-    console.log("submitted");
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await fetch("/api/profile", {
+        method: "POST",
+        body: JSON.stringify(formData),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.ok) {
+        console.log("Profile created successfully");
+      } else {
+        console.error("Failed to create profile");
+      }
+    } catch (error) {
+      console.error("Error creating profile:", error);
+    }
   };
 
   return (
@@ -103,8 +121,6 @@ export default function ProfilePage() {
             />
           </section>
 
-          <input type="submit" />
-
           <section>
             <label htmlFor="url">Profile Photo</label>
             <input
@@ -118,6 +134,8 @@ export default function ProfilePage() {
             <div className="profilePicture">
               <img src={formData.url} />
             </div>
+
+            <input type="submit" />
           </section>
         </form>
       </div>
