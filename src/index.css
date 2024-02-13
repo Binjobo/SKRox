@@ -123,6 +123,7 @@ button:focus-visible {
 nav {
   margin-bottom: 50px;
   background-color: rgb(153, 87, 177);
+  height: 7%;
 }
 
 ul {

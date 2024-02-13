@@ -2,13 +2,20 @@ import { useState } from "react";
 
 export default function ProfilePage() {
   const [formData, setFormData] = useState({
+    // name: "",
+    // email: "",
+    // gender: "",
+    // height: "",
+    // password: "",
     firstName: "",
     lastName: "",
     day: "",
     month: "",
     year: "",
+    genderInterest: "",
     about: "",
     url: "",
+    matches: [],
   });
 
   const handleChange = (evt) => {
@@ -21,25 +28,46 @@ export default function ProfilePage() {
 
   // console.log(formData);
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+
+  //   try {
+  //     const response = await fetch("/api/profile", {
+  //       method: "POST",
+  //       body: JSON.stringify(formData),
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     });
+
+  //     if (response.ok) {
+  //       console.log("Profile created successfully");
+  //     } else {
+  //       console.error("Failed to create profile");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error creating profile:", error);
+  //   }
+  // };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
     try {
-      const response = await fetch("/api/profile", {
-        method: "POST",
-        body: JSON.stringify(formData),
+      const response = await fetch("/api/users/user", {
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
+        body: JSON.stringify(formData),
       });
+      const data = await response.json();
 
-      if (response.ok) {
-        console.log("Profile created successfully");
-      } else {
-        console.error("Failed to create profile");
-      }
-    } catch (error) {
-      console.error("Error creating profile:", error);
+      console.log(data);
+      //     const success = response.status === 200;
+      //     // if (success) navigate("/dashboard");
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -58,7 +86,8 @@ export default function ProfilePage() {
               placeholder="Your First Name"
               value={formData.firstName}
               onChange={handleChange}
-              required=""
+              // required=""
+              required={true}
             />
 
             <br />
@@ -82,7 +111,7 @@ export default function ProfilePage() {
                 type="number"
                 name="day"
                 id="day"
-                placeholder="Day"
+                placeholder="DD"
                 value={formData.day}
                 onChange={handleChange}
                 required=""
@@ -92,7 +121,7 @@ export default function ProfilePage() {
                 type="number"
                 name="month"
                 id="month"
-                placeholder="Month"
+                placeholder="MM"
                 value={formData.month}
                 onChange={handleChange}
                 required=""
@@ -102,14 +131,37 @@ export default function ProfilePage() {
                 type="number"
                 name="year"
                 id="year"
-                placeholder="Year"
+                placeholder="YY"
                 value={formData.year}
                 onChange={handleChange}
                 required=""
               />
             </div>
 
-            <label htmlFor="about">About Me</label>
+            <label>Interested in: </label>
+
+            <div className="all-gender-interests">
+              <input
+                id="man-gender-interest"
+                type="radio"
+                name="genderInterest"
+                value="man"
+                onChange={handleChange}
+                checked={formData.genderInterest === "man"}
+              />
+              <label>Man</label>
+              <input
+                id="woman-gender-interest"
+                type="radio"
+                name="genderInterest"
+                value="woman"
+                onChange={handleChange}
+                checked={formData.genderInterest === "woman"}
+              />
+              <label>Woman</label>
+            </div>
+
+            <label className="about-info">About Me</label>
             <input
               type="text"
               name="about"
@@ -122,7 +174,7 @@ export default function ProfilePage() {
           </section>
 
           <section>
-            <label htmlFor="url">Profile Photo</label>
+            <label className="photo-url">Profile Photo</label>
             <input
               type="url"
               name="url"
@@ -132,7 +184,7 @@ export default function ProfilePage() {
             />
 
             <div className="profilePicture">
-              <img src={formData.url} />
+              <img src={formData.url} alt="profile pic" />
             </div>
 
             <input type="submit" />
