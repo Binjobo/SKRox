@@ -10,17 +10,16 @@ import ChatPage from "../ChatPage/ChatPage";
 
 export default function App() {
   const [user, setUser] = useState(false);
-  // console.log(user);
 
   const handleClick = () => {
     setUser(!user);
   };
 
   return (
-    <>
+    <div className="background">
+      <NavBar />
       {user ? (
         <>
-          <NavBar />
           <div>
             <Routes>
               <Route
@@ -42,6 +41,6 @@ export default function App() {
           Tmp admin
         </button>
       </div>
-    </>
+    </div>
   );
 }

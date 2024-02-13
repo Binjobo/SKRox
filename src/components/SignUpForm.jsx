@@ -76,9 +76,6 @@ export default function SignUpForm({ setIsNewAccount }) {
               "Password too short. Please input a password that are at least 3 characters",
           });
         }
-        // else {
-        //   setFormData({ ...formData, error: "Something failed" });
-        // }
       }
     } catch (error) {
       setFormData({ ...formData, error: "Something failed" });
@@ -89,7 +86,7 @@ export default function SignUpForm({ setIsNewAccount }) {
   const disable = formData.password !== formData.confirm;
 
   return (
-    <div>
+    <div className="login-signup">
       <section>
         <h1>Create an account</h1>
         <form onSubmit={handleSubmit}>

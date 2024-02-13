@@ -1,4 +1,4 @@
-:root {
+/* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -100,4 +100,34 @@ button:focus-visible {
   bottom: 0;
   margin: 10px;
   color: #fff;
+} */
+
+.background {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background: rgb(202, 156, 156)
+  /* , url('https://i.ytimg.com/vi/YWwEcY-pkKk/sddefault.jpg') */
+}
+
+/* navbar */
+nav {
+  margin-bottom: 50px;
+  background-color: rgb(153, 87, 177);
+}
+
+ul {
+  display: flex;
+  background-color: rgb(181, 58, 194);
+  width: 100%;
+  justify-content: space-evenly;
+  padding: 0;
+  border: 0;
+}
+
+.login-signup {
+  margin: auto;
+  width: 50%;
+  border: 3px solid green;
+  padding: 10px;
 }

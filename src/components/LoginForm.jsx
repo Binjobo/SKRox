@@ -44,7 +44,7 @@ export default function LoginForm({ setIsNewAccount, setUser }) {
   };
 
   return (
-    <section>
+    <section className="login-signup">
       <h1 className="logIn">Log in to your account:</h1>
       <form action="#" autoComplete="off" onSubmit={handleSubmit}>
         <div>
@@ -73,8 +73,6 @@ export default function LoginForm({ setIsNewAccount, setUser }) {
         </div>
         <button type="submit">Sign in</button>
 
-        <p>Log in with facebook</p>
-        <p>Log in with email</p>
         <p>
           Sign up if yer havn&apos;t done so!
           <button onClick={handleClick}>Sign up</button>
