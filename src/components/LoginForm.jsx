@@ -6,6 +6,10 @@ export default function LoginForm({ setIsNewAccount, setUser }) {
     setIsNewAccount(true);
   };
 
+  const handleCloseClick = () => {
+    setIsNewAccount(null);
+  };
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -45,6 +49,9 @@ export default function LoginForm({ setIsNewAccount, setUser }) {
 
   return (
     <section className="login-signup">
+      <div className="close-icon" onClick={handleCloseClick}>
+        <button>CLOSE</button>
+      </div>
       <h1 className="logIn">Log in to your account:</h1>
       <form action="#" autoComplete="off" onSubmit={handleSubmit}>
         <div>

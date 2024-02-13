@@ -5,6 +5,10 @@ export default function SignUpForm({ setIsNewAccount }) {
     setIsNewAccount(false);
   };
 
+  const handleCloseClick = () => {
+    setIsNewAccount(null);
+  };
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -87,6 +91,9 @@ export default function SignUpForm({ setIsNewAccount }) {
 
   return (
     <div className="login-signup">
+      <div className="close-icon" onClick={handleCloseClick}>
+        <button>CLOSE</button>
+      </div>
       <section>
         <h1>Create an account</h1>
         <form onSubmit={handleSubmit}>

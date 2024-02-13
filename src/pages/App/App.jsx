@@ -10,6 +10,7 @@ import ChatPage from "../ChatPage/ChatPage";
 
 export default function App() {
   const [user, setUser] = useState(false);
+  // const [token, setToken] = useState(null);
 
   const handleClick = () => {
     setUser(!user);
@@ -17,9 +18,10 @@ export default function App() {
 
   return (
     <div className="background">
+      {/* <NavBar token={token} setToken={setToken} /> */}
+      <NavBar user={user} setUser={setUser} />
       {user ? (
         <>
-          <NavBar />
           <div>
             <Routes>
               <Route
