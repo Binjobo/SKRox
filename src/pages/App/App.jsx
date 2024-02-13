@@ -4,7 +4,7 @@ import Homepage from "../Homepage/Homepage";
 import AuthPage from "../AuthPage/AuthPage";
 import NavBar from "../../components/NavBar";
 import ProfilePage from "../ProfilePage/ProfilePage";
-import PreferencePage from "../PreferencePage/PreferencePage";
+// import PreferencePage from "../PreferencePage/PreferencePage";
 import MatchPage from "../MatchPage/MatchPage";
 import ChatPage from "../ChatPage/ChatPage";
 
@@ -17,19 +17,28 @@ export default function App() {
 
   return (
     <div className="background">
-      <NavBar />
       {user ? (
         <>
+          <NavBar />
           <div>
             <Routes>
               <Route
                 path="/"
                 element={<Homepage user={user} setUser={setUser} />}
               />
-              <Route path="/profile" element={<ProfilePage />} />
-              <Route path="/preference" element={<PreferencePage />} />{" "}
-              <Route path="/match" element={<MatchPage />} />
-              <Route path="/chat" element={<ChatPage />} />
+              {/* <Route path="/preference" element={<PreferencePage />} />{" "}  */}
+              <Route
+                path="/profile"
+                element={<ProfilePage user={user} setUser={setUser} />}
+              />
+              <Route
+                path="/match"
+                element={<MatchPage user={user} setUser={setUser} />}
+              />
+              <Route
+                path="/chat"
+                element={<ChatPage user={user} setUser={setUser} />}
+              />
             </Routes>
           </div>
         </>

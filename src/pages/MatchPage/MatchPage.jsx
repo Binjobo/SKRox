@@ -73,7 +73,7 @@ function Advanced() {
   };
 
   return (
-    <div>
+    <div className="match-page">
       <link
         href="https://fonts.googleapis.com/css?family=Damion&display=swap"
         rel="stylesheet"

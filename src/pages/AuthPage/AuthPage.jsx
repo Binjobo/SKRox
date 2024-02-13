@@ -3,15 +3,28 @@ import LoginForm from "../../components/LoginForm";
 import SignUpForm from "../../components/SignUpForm";
 
 export default function AuthPage({ setUser }) {
-  const [isNewAccount, setIsNewAccount] = useState(false);
+  const [isNewAccount, setIsNewAccount] = useState(null);
+
+  const handleSignUpClick = () => {
+    setIsNewAccount(true);
+  };
+
+  const handleLoginClick = () => {
+    setIsNewAccount(false);
+  };
 
   return (
-    <>
-      {isNewAccount ? (
-        <SignUpForm setIsNewAccount={setIsNewAccount} />
-      ) : (
-        <LoginForm setIsNewAccount={setIsNewAccount} setUser={setUser} />
-      )}
-    </>
+    <div className="authPage">
+      <div className="authButtons">
+        <button onClick={handleSignUpClick}>Sign Up</button>
+        <button onClick={handleLoginClick}>Login</button>
+      </div>
+      {isNewAccount !== null &&
+        (isNewAccount ? (
+          <SignUpForm setIsNewAccount={setIsNewAccount} />
+        ) : (
+          <LoginForm setIsNewAccount={setIsNewAccount} setUser={setUser} />
+        ))}
+    </div>
   );
 }

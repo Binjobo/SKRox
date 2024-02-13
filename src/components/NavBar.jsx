@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+
 export default function NavBar() {
   return (
     <nav>
@@ -10,9 +11,9 @@ export default function NavBar() {
         <li>
           <NavLink to="/profile">Profile</NavLink>
         </li>
-        <li>
+        {/* <li>
           <NavLink to="/preference">Preference</NavLink>
-        </li>
+        </li>  */}
         <li>
           <NavLink to="/match">Match</NavLink>
         </li>
