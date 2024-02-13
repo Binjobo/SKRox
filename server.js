@@ -17,9 +17,9 @@ const app = express();
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "dist")));
-app.use("/api/users", usersRouter);
 
 //* routes block
+app.use("/api/users", usersRouter);
 
 //this acts as a catch all function and must be at the very end after all other functions
 app.get("/*", function (req, res) {
