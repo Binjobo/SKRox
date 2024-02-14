@@ -15,7 +15,6 @@ function createJWT(user) {
   );
 }
 
-// ---------- CREATE USER FROM SIGN UP ---------- //
 
 const create = async (req, res) => {
   const data = req.body;
@@ -46,7 +45,7 @@ const create = async (req, res) => {
   try {
     const user = await User.create(data);
 
-    console.log(user);
+    console.log("user", user);
 
     const token = createJWT(user);
     res.status(201).json({ token });
@@ -55,8 +54,6 @@ const create = async (req, res) => {
     res.status(500).json({ error: "Error creating user" });
   }
 };
-
-// ---------- CHECK LOG-IN ---------- //
 
 const login = async (req, res) => {
   const data = req.body;
@@ -86,7 +83,42 @@ const login = async (req, res) => {
   }
 };
 
+const updateUser = async (req, res) => {
+  const formData = req.body.formData;
+
+  console.log("formdata", formData);
+
+  try {
+    const updatedUser = await User.findOneAndUpdate(
+      { user_id: formData._id },
+      {
+        $set: {
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          day: parseInt(formData.day),
+          month: parseInt(formData.month),
+          year: parseInt(formData.year),
+          // show_gender: formData.show_gender,
+          // gender_identity: formData.gender_identity,
+          // gender_interest: formData.gender_interest,
+          genderInterest: formData.genderInterest,
+          about: formData.about,
+          url: formData.url,
+          matches: formData.matches,
+        },
+      },
+      { new: true }
+    );
+
+    res.json(updatedUser);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+};
+
 module.exports = {
   create,
   login,
+  updateUser,
 };

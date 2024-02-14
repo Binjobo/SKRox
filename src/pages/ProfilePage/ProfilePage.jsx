@@ -131,7 +131,7 @@ export default function ProfilePage() {
                 type="number"
                 name="year"
                 id="year"
-                placeholder="YY"
+                placeholder="YYYY"
                 value={formData.year}
                 onChange={handleChange}
                 required=""
@@ -183,8 +183,14 @@ export default function ProfilePage() {
               required=""
             />
 
-            <div className="profilePicture">
-              <img src={formData.url} alt="profile pic" />
+            <div>
+              {formData.url && (
+                <img
+                  className="profilePicture"
+                  src={formData.url}
+                  alt="profile pic"
+                />
+              )}
             </div>
 
             <input type="submit" />
