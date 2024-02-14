@@ -162,7 +162,21 @@ const login = async (req, res) => {
   }
 };
 
-const addMatch = async (req, res) => {};
+const addMatch = async (req, res) => {
+  const { userId, matchedUserId } = req.body;
+
+  try {
+    const user = await User.findOneAndUpdate(
+      { user_id: userId },
+      { $push: { matches: { user_id: matchedUserId } } },
+      { new: true }
+    );
+    res.json(user);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+};
 
 const updateUser = async (req, res) => {
   const formData = req.body.formData;
