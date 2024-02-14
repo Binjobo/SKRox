@@ -1,6 +1,7 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const { v4: uuidv4 } = require("uuid");
 
 // ---------- HELPER FUNCTIONS ---------- //
 
@@ -16,81 +17,128 @@ function createJWT(user) {
 }
 
 //get
-const getUser = async (req, res) => {};
+const getUser = async (req, res) => {
+  const userId = req.query.userId;
 
-const getAll = async (req, res) => {};
+  try {
+    const user = await User.findOne({ user_id: userId });
+    res.json(user);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+};
+
+const getAll = async (req, res) => {
+  const userIds = JSON.parse(req.query.userIds);
+
+  try {
+    const foundUsers = await User.find({ user_id: { $in: userIds } });
+    res.json(foundUsers);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+};
 
 const getGenderedUsers = async (req, res) => {};
 
 //post
-const create = async (req, res) => {
-  const data = req.body;
+const signup = async (req, res) => {
+  const { email, password, gender, height } = req.body;
 
-  const currUserEmail = await User.findOne({ email: data.email });
+  const currUserEmail = await User.findOne({ email });
 
   if (currUserEmail) {
     return res.status(400).json({ error: "Email already in use" });
   }
 
-  if (data.gender === "male" && data.height > 165) {
+  if (gender === "male" && height > 165) {
     return res
       .status(400)
       .json({ error: "Too tall for a male, max height is 165cm" });
   }
 
-  if (data.gender === "female" && data.height > 155) {
+  if (gender === "female" && height > 155) {
     return res
       .status(400)
       .json({ error: "Too tall for a female, max height is 155cm" });
   }
 
-  if (data.password.trim().length < 3) {
+  if (password.trim().length < 3) {
     res.status(400).json({ error: "password too short" });
     return;
   }
 
   try {
-    const user = await User.create(data);
+    const user_id = uuidv4(); // Generate a unique user_id
+    const newUser = new User({ user_id, email, password: password });
+    await newUser.save();
 
-    console.log("user", user);
+    const token = createJWT(newUser);
+    console.log(req.body);
 
-    const token = createJWT(user);
-    res.status(201).json({ token });
+    res.status(201).json({ token, userId: newUser.user_id });
   } catch (error) {
     // res.status(500).json({ error });
     res.status(500).json({ error: "Error creating user" });
   }
 };
 
-const login = async (req, res) => {
-  const data = req.body;
+// const login = async (req, res) => {
+//   const data = req.body;
 
-  const user = await User.findOne({ email: data.email });
+//   const user = await User.findOne({ email: data.email });
+
+//   try {
+//     if (user === null) {
+//       res.status(401).json({ msg: "user not found" });
+//       return;
+//     }
+
+//     console.log(data.password);
+//     console.log(user.password);
+
+//     const check = await bcrypt.compare(data.password, user.password);
+//     if (!check) {
+//       res.status(401).json({ msg: "wrong password" });
+//       return;
+//     }
+
+//     const token = createJWT(user);
+
+//     res.json({ token });
+//   } catch (error) {
+//     res.status(500).json({ error });
+//   }
+// };
+
+//update
+
+const login = async (req, res) => {
+  const { email, password } = req.body;
 
   try {
-    if (user === null) {
-      res.status(401).json({ msg: "user not found" });
-      return;
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(400).json("Invalid Credentials");
     }
 
-    console.log(data.password);
-    console.log(user.password);
+    const correctPassword = await bcrypt.compare(password, user.password);
 
-    const check = await bcrypt.compare(data.password, user.password);
-    if (!check) {
+    if (!correctPassword) {
       res.status(401).json({ msg: "wrong password" });
       return;
     }
-
     const token = createJWT(user);
-
-    res.json({ token });
-  } catch (error) {
-    res.status(500).json({ error });
+    res.status(201).json({ token, userId: user.user_id });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
   }
 };
 
-//update
 const addMatch = async (req, res) => {};
 
 const updateUser = async (req, res) => {
@@ -133,7 +181,7 @@ const deleteMatch = async (req, res) => {};
 const deleteAccount = async (req, res) => {};
 
 module.exports = {
-  create,
+  signup,
   login,
   updateUser,
   getUser,
