@@ -1,5 +1,5 @@
 import NavBar from "../../components/Navbar";
-import AuthModel from "../../components/AuthModal";
+import AuthModel from "../../components/LoginAndSignup";
 import { useState } from "react";
 import { useCookies } from "react-cookie";
 
