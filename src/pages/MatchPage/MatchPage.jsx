@@ -1,11 +1,10 @@
 import TinderCard from "react-tinder-card";
 import { useState, useEffect } from "react";
-// import ChatContainer from "../components/ChatContainer";
 import { useCookies } from "react-cookie";
 import axios from "axios";
+import NavBar from "../../components/Navbar";
 
-export default function Matchpage({ user, setUser }) {
-  // const [user, setUser] = useState(null);
+const MatchPage = ({ user, setUser }) => {
   const [genderedUsers, setGenderedUsers] = useState(null);
   const [lastDirection, setLastDirection] = useState();
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
@@ -14,7 +13,7 @@ export default function Matchpage({ user, setUser }) {
 
   const getUser = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/user", {
+      const response = await axios.get("http://localhost:3000/user", {
         params: { userId },
       });
       setUser(response.data);
@@ -25,7 +24,7 @@ export default function Matchpage({ user, setUser }) {
 
   const getGenderedUsers = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/gendered-users", {
+      const response = await axios.get("http://localhost:3000/gendered-users", {
         params: { gender: user?.gender_interest },
       });
       setGenderedUsers(response.data);
@@ -46,7 +45,7 @@ export default function Matchpage({ user, setUser }) {
 
   const updateMatches = async (matchedUserId) => {
     try {
-      await axios.put("http://localhost:8000/addmatch", {
+      await axios.put("http://localhost:3000/addmatch", {
         userId,
         matchedUserId,
       });
@@ -80,27 +79,31 @@ export default function Matchpage({ user, setUser }) {
   return (
     <>
       {user && (
-        <div className="dashboard">
-          {/* <ChatContainer user={user} /> */}
-          <div className="swipe-container">
-            <div className="card-container">
-              {filteredGenderedUsers?.map((genderedUser) => (
-                <TinderCard
-                  className="swipe"
-                  key={genderedUser.first_name}
-                  onSwipe={(dir) => swiped(dir, genderedUser.user_id)}
-                  onCardLeftScreen={() => outOfFrame(genderedUser.first_name)}
-                >
-                  <div
-                    style={{ backgroundImage: "url(" + genderedUser.url + ")" }}
-                    className="card"
+        <div>
+          <NavBar />
+          <div className="match-page">
+            <div className="swipe-container">
+              <div className="card-container">
+                {filteredGenderedUsers?.map((genderedUser) => (
+                  <TinderCard
+                    className="swipe"
+                    key={genderedUser.first_name}
+                    onSwipe={(dir) => swiped(dir, genderedUser.user_id)}
+                    onCardLeftScreen={() => outOfFrame(genderedUser.first_name)}
                   >
-                    <h3>{genderedUser.first_name}</h3>
-                  </div>
-                </TinderCard>
-              ))}
-              <div className="swipe-info">
-                {lastDirection ? <p>You swiped {lastDirection}</p> : <p />}
+                    <div
+                      style={{
+                        backgroundImage: "url(" + genderedUser.url + ")",
+                      }}
+                      className="card"
+                    >
+                      <h3>{genderedUser.first_name}</h3>
+                    </div>
+                  </TinderCard>
+                ))}
+                <div className="swipe-info">
+                  {lastDirection ? <p>You swiped {lastDirection}</p> : <p />}
+                </div>
               </div>
             </div>
           </div>
@@ -108,4 +111,6 @@ export default function Matchpage({ user, setUser }) {
       )}
     </>
   );
-}
+};
+
+export default MatchPage;
