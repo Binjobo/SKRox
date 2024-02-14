@@ -41,7 +41,17 @@ const getAll = async (req, res) => {
   }
 };
 
-const getGenderedUsers = async (req, res) => {};
+const getGenderedUsers = async (req, res) => {
+  const gender = req.query.gender;
+
+  try {
+    const foundUsers = await User.find({ gender_identity: gender });
+    res.json(foundUsers);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+};
 
 //post
 // const signup = async (req, res) => {
@@ -213,9 +223,9 @@ const updateUser = async (req, res) => {
 };
 
 //delete
-const deleteMatch = async (req, res) => {};
+// const deleteMatch = async (req, res) => {};
 
-const deleteAccount = async (req, res) => {};
+// const deleteAccount = async (req, res) => {};
 
 module.exports = {
   signup,
@@ -225,6 +235,6 @@ module.exports = {
   getAll,
   getGenderedUsers,
   addMatch,
-  deleteMatch,
-  deleteAccount,
+  // deleteMatch,
+  // deleteAccount,
 };
