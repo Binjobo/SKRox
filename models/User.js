@@ -10,10 +10,10 @@ const userSchema = new Schema(
       required: true,
       unique: true,
     },
-    name: {
-      type: String,
-      required: true,
-    },
+    // name: {
+    //   type: String,
+    //   required: true,
+    // },
     email: {
       type: String,
       unique: true,
@@ -21,38 +21,41 @@ const userSchema = new Schema(
       lowercase: true,
       required: true,
     },
-    gender: {
-      type: String,
-      required: true,
-    },
-    height: {
-      type: Number,
-      required: true,
-      min: 0,
-      max: 165,
-    },
+    // gender: {
+    //   type: String,
+    //   required: true,
+    // },
+    // height: {
+    //   type: Number,
+    //   required: true,
+    //   min: 0,
+    //   max: 165,
+    // },
     password: {
       type: String,
       trim: true,
       minLength: 3,
       required: true,
     },
-    firstName: {
+    first_name: {
       type: String,
     },
-    lastName: {
+    // last_name: {
+    //   type: String,
+    // },
+    dob_day: {
+      type: Number,
+    },
+    dob_month: {
+      type: Number,
+    },
+    dob_year: {
+      type: Number,
+    },
+    gender_identity: {
       type: String,
     },
-    day: {
-      type: Number,
-    },
-    month: {
-      type: Number,
-    },
-    year: {
-      type: Number,
-    },
-    genderInterest: {
+    gender_interest: {
       type: String,
     },
     about: {
