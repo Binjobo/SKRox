@@ -1,57 +1,41 @@
-import { useState } from "react";
-import { Routes, Route } from "react-router-dom";
-import Homepage from "../Homepage/Homepage";
 import AuthPage from "../AuthPage/AuthPage";
-import NavBar from "../../components/NavBar";
-import ProfilePage from "../ProfilePage/ProfilePage";
-// import PreferencePage from "../PreferencePage/PreferencePage";
 import MatchPage from "../MatchPage/MatchPage";
+import ProfileAndPreference from "../ProfileAndPreferencePage/ProfileAndPreferencePage";
+import { Routes, Route } from "react-router-dom";
+import { useCookies } from "react-cookie";
+import { useState } from "react";
+
+import HomePage from "../HomePage/HomePage";
 import ChatPage from "../ChatPage/ChatPage";
 
 export default function App() {
-  const [user, setUser] = useState(false);
-  // const [token, setToken] = useState(null);
+  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
 
-  const handleClick = () => {
-    setUser(!user);
-  };
+  const [user, setUser] = useState(null);
+
+  const authToken = cookies.AuthToken;
 
   return (
     <div className="background">
-      {/* <NavBar token={token} setToken={setToken} /> */}
-      <NavBar user={user} setUser={setUser} />
-      {user ? (
-        <>
-          <div>
-            <Routes>
-              <Route
-                path="/"
-                element={<Homepage user={user} setUser={setUser} />}
-              />
-              {/* <Route path="/preference" element={<PreferencePage />} />{" "}  */}
-              <Route
-                path="/profile"
-                element={<ProfilePage user={user} setUser={setUser} />}
-              />
-              <Route
-                path="/match"
-                element={<MatchPage user={user} setUser={setUser} />}
-              />
-              <Route
-                path="/chat"
-                element={<ChatPage user={user} setUser={setUser} />}
-              />
-            </Routes>
-          </div>
-        </>
-      ) : (
-        <AuthPage setUser={setUser} />
-      )}
-      <div>
-        <button className="toggleButton" onClick={handleClick}>
-          Tmp admin
-        </button>
-      </div>
+      <Routes>
+        <Route path="/" element={<AuthPage />} />
+        {authToken && (
+          <Route
+            path="/matches"
+            element={<MatchPage user={user} setUser={setUser} />}
+          />
+        )}
+        {authToken && (
+          <Route path="/profile" element={<ProfileAndPreference />} />
+        )}
+        {authToken && <Route path="/homepage" element={<HomePage />} />}
+        {authToken && (
+          <Route
+            path="/chatpage"
+            element={<ChatPage user={user} setUser={setUser} />}
+          />
+        )}
+      </Routes>
     </div>
   );
 }
