@@ -195,20 +195,18 @@ const updateUser = async (req, res) => {
 
   try {
     const updatedUser = await User.findOneAndUpdate(
-      { user_id: formData._id },
+      { user_id: formData.user_id },
       {
         $set: {
-          firstName: formData.firstName,
-          lastName: formData.lastName,
-          day: parseInt(formData.day),
-          month: parseInt(formData.month),
-          year: parseInt(formData.year),
-          // show_gender: formData.show_gender,
-          // gender_identity: formData.gender_identity,
-          // gender_interest: formData.gender_interest,
-          genderInterest: formData.genderInterest,
-          about: formData.about,
+          first_name: formData.first_name,
+          dob_day: parseInt(formData.dob_day),
+          dob_month: parseInt(formData.dob_month),
+          dob_year: parseInt(formData.dob_year),
+          show_gender: formData.show_gender,
+          gender_identity: formData.gender_identity,
+          gender_interest: formData.gender_interest,
           url: formData.url,
+          about: formData.about,
           matches: formData.matches,
         },
       },
