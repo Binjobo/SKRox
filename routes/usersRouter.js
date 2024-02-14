@@ -15,4 +15,8 @@ router.post("/login", userController.login);
 router.put("/addmatch", userController.addMatch);
 router.put("/user", userController.updateUser);
 
+//delete
+router.delete("/removematch", userController.deleteMatch);
+router.delete("/user", userController.deleteAccount);
+
 module.exports = router;

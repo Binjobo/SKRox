@@ -15,7 +15,14 @@ function createJWT(user) {
   );
 }
 
+//get
+const getUser = async (req, res) => {};
 
+const getAll = async (req, res) => {};
+
+const getGenderedUsers = async (req, res) => {};
+
+//post
 const create = async (req, res) => {
   const data = req.body;
 
@@ -83,6 +90,9 @@ const login = async (req, res) => {
   }
 };
 
+//update
+const addMatch = async (req, res) => {};
+
 const updateUser = async (req, res) => {
   const formData = req.body.formData;
 
@@ -117,8 +127,19 @@ const updateUser = async (req, res) => {
   }
 };
 
+//delete
+const deleteMatch = async (req, res) => {};
+
+const deleteAccount = async (req, res) => {};
+
 module.exports = {
   create,
   login,
   updateUser,
+  getUser,
+  getAll,
+  getGenderedUsers,
+  addMatch,
+  deleteMatch,
+  deleteAccount,
 };
