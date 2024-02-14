@@ -6,9 +6,11 @@ require("./config/database");
 const express = require("express");
 const path = require("path");
 const logger = require("morgan");
+const cors = require("cors");
 
 //routers
 const usersRouter = require("./routes/usersRouter");
+const messageRouter = require("./routes/messageRouter");
 
 //express app
 const app = express();
@@ -17,9 +19,11 @@ const app = express();
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "dist")));
+app.use(cors());
 
 //* routes block
-app.use("/api/users", usersRouter);
+app.use("/", usersRouter);
+app.use("/", messageRouter);
 
 //this acts as a catch all function and must be at the very end after all other functions
 app.get("/*", function (req, res) {
