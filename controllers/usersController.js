@@ -44,33 +44,56 @@ const getAll = async (req, res) => {
 const getGenderedUsers = async (req, res) => {};
 
 //post
+// const signup = async (req, res) => {
+//   const { email, password, gender, height } = req.body;
+
+//   const currUserEmail = await User.findOne({ email });
+
+//   if (currUserEmail) {
+//     return res.status(400).json({ error: "Email already in use" });
+//   }
+
+//   if (gender === "male" && height > 165) {
+//     return res
+//       .status(400)
+//       .json({ error: "Too tall for a male, max height is 165cm" });
+//   }
+
+//   if (gender === "female" && height > 155) {
+//     return res
+//       .status(400)
+//       .json({ error: "Too tall for a female, max height is 155cm" });
+//   }
+
+//   if (password.trim().length < 3) {
+//     res.status(400).json({ error: "password too short" });
+//     return;
+//   }
+
+//   try {
+//     const user_id = uuidv4(); // Generate a unique user_id
+//     const newUser = new User({ user_id, email, password: password });
+//     await newUser.save();
+
+//     const token = createJWT(newUser);
+//     console.log(req.body);
+
+//     res.status(201).json({ token, userId: newUser.user_id });
+//   } catch (error) {
+//     // res.status(500).json({ error });
+//     res.status(500).json({ error: "Error creating user" });
+//   }
+// };
+
 const signup = async (req, res) => {
-  const { email, password, gender, height } = req.body;
-
-  const currUserEmail = await User.findOne({ email });
-
-  if (currUserEmail) {
-    return res.status(400).json({ error: "Email already in use" });
-  }
-
-  if (gender === "male" && height > 165) {
-    return res
-      .status(400)
-      .json({ error: "Too tall for a male, max height is 165cm" });
-  }
-
-  if (gender === "female" && height > 155) {
-    return res
-      .status(400)
-      .json({ error: "Too tall for a female, max height is 155cm" });
-  }
-
-  if (password.trim().length < 3) {
-    res.status(400).json({ error: "password too short" });
-    return;
-  }
+  const { email, password } = req.body;
 
   try {
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(409).send("User already exists. Please login");
+    }
+
     const user_id = uuidv4(); // Generate a unique user_id
     const newUser = new User({ user_id, email, password: password });
     await newUser.save();
@@ -79,9 +102,9 @@ const signup = async (req, res) => {
     console.log(req.body);
 
     res.status(201).json({ token, userId: newUser.user_id });
-  } catch (error) {
-    // res.status(500).json({ error });
-    res.status(500).json({ error: "Error creating user" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
   }
 };
 
