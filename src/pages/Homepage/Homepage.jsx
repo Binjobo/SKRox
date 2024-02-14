@@ -1,18 +1,22 @@
-import * as userService from "../../utilities/users-service";
+import NavBar from "../../components/Navbar";
+import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
 
-export default function Homepage({ user, setUser }) {
-  function handleLogOut() {
-    userService.logOut();
-    setUser(null);
-  }
+export default function HomePage({ user }) {
+  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+  const navigate = useNavigate();
 
-  console.log(user?.name);
+  const logout = () => {
+    removeCookie("UserId", cookies.UserId);
+    removeCookie("AuthToken", cookies.AuthToken);
+    navigate("/");
+  };
+
   return (
     <>
-      Hi {user.name}, you have an amazing height of {user.height} cm!
-      <button className="logout" onClick={handleLogOut}>
-        Log Out
-      </button>
+      <NavBar />
+      <h1>HomePage!</h1>
+      <button onClick={logout}>Log out</button>
     </>
   );
 }
