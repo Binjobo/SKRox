@@ -5,7 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { useState } from "react";
 import AdminPanel from "../Admin/AdminPanel";
-import HomePage from "../HomePage/HomePage";
+import HomePage from "../Homepage/Homepage";
 import ChatPage from "../ChatPage/ChatPage";
 
 export default function App() {
