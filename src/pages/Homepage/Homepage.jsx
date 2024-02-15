@@ -1,4 +1,4 @@
-import NavBar from "../../components/Navbar";
+import NavBar from "../../components/NavBar";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 

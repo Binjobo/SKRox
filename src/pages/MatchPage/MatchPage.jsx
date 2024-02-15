@@ -2,7 +2,7 @@ import TinderCard from "react-tinder-card";
 import { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
 import axios from "axios";
-import NavBar from "../../components/Navbar";
+import NavBar from "../../components/NavBar";
 
 const MatchPage = ({ user, setUser }) => {
   const [genderedUsers, setGenderedUsers] = useState(null);

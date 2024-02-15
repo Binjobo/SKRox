@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import NavBar from "../../components/Navbar";
+import NavBar from "../../components/NavBar";
 
 const ProfileAndPreference = () => {
   const [cookies, setCookie, removeCookie] = useCookies(null);

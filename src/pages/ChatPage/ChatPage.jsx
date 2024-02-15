@@ -1,5 +1,5 @@
-import ChatContainer from "../../components/ChatContainer";
-import NavBar from "../../components/Navbar";
+import ChatContainer from "../../components/ChatBox";
+import NavBar from "../../components/NavBar";
 
 const ChatPage = ({ user, setUser }) => {
   return (

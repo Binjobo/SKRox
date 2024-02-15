@@ -53,48 +53,6 @@ const getGenderedUsers = async (req, res) => {
   }
 };
 
-//post
-// const signup = async (req, res) => {
-//   const { email, password, gender, height } = req.body;
-
-//   const currUserEmail = await User.findOne({ email });
-
-//   if (currUserEmail) {
-//     return res.status(400).json({ error: "Email already in use" });
-//   }
-
-//   if (gender === "male" && height > 165) {
-//     return res
-//       .status(400)
-//       .json({ error: "Too tall for a male, max height is 165cm" });
-//   }
-
-//   if (gender === "female" && height > 155) {
-//     return res
-//       .status(400)
-//       .json({ error: "Too tall for a female, max height is 155cm" });
-//   }
-
-//   if (password.trim().length < 3) {
-//     res.status(400).json({ error: "password too short" });
-//     return;
-//   }
-
-//   try {
-//     const user_id = uuidv4(); // Generate a unique user_id
-//     const newUser = new User({ user_id, email, password: password });
-//     await newUser.save();
-
-//     const token = createJWT(newUser);
-//     console.log(req.body);
-
-//     res.status(201).json({ token, userId: newUser.user_id });
-//   } catch (error) {
-//     // res.status(500).json({ error });
-//     res.status(500).json({ error: "Error creating user" });
-//   }
-// };
-
 const signup = async (req, res) => {
   const { email, password } = req.body;
 
@@ -117,36 +75,6 @@ const signup = async (req, res) => {
     res.status(500).send("Server Error");
   }
 };
-
-// const login = async (req, res) => {
-//   const data = req.body;
-
-//   const user = await User.findOne({ email: data.email });
-
-//   try {
-//     if (user === null) {
-//       res.status(401).json({ msg: "user not found" });
-//       return;
-//     }
-
-//     console.log(data.password);
-//     console.log(user.password);
-
-//     const check = await bcrypt.compare(data.password, user.password);
-//     if (!check) {
-//       res.status(401).json({ msg: "wrong password" });
-//       return;
-//     }
-
-//     const token = createJWT(user);
-
-//     res.json({ token });
-//   } catch (error) {
-//     res.status(500).json({ error });
-//   }
-// };
-
-//update
 
 const login = async (req, res) => {
   const { email, password } = req.body;
@@ -221,7 +149,21 @@ const updateUser = async (req, res) => {
 };
 
 //delete
-// const deleteMatch = async (req, res) => {};
+const deleteMatch = async (req, res) => {
+  const { userId, matchedUserId } = req.body;
+
+  try {
+    const user = await User.findOneAndUpdate(
+      { user_id: userId },
+      { $pull: { matches: { user_id: matchedUserId } } },
+      { new: true }
+    );
+    res.json(user);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+};
 
 // const deleteAccount = async (req, res) => {};
 
@@ -233,6 +175,6 @@ module.exports = {
   getAll,
   getGenderedUsers,
   addMatch,
-  // deleteMatch,
+  deleteMatch,
   // deleteAccount,
 };
