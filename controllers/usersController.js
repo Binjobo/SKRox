@@ -3,8 +3,6 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { v4: uuidv4 } = require("uuid");
 
-// ---------- HELPER FUNCTIONS ---------- //
-
 // Create token in controller
 
 function createJWT(user) {
@@ -204,7 +202,7 @@ const deleteUser = async (req, res) => {
     await User.findByIdAndDelete(req.params.userId);
     res.json({ message: "User deleted successfully" });
   } catch (error) {
-    console.log(error);
+    console.log("backend error", error);
   }
 };
 

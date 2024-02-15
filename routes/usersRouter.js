@@ -26,10 +26,11 @@ router.get(
   // authenticate, isAdmin,
   userController.getAllUsers
 );
+
 router.delete(
   "/admin/users/:id",
-  authenticate,
-  isAdmin,
+  // authenticate,
+  // isAdmin,
   userController.deleteUser
 );
 

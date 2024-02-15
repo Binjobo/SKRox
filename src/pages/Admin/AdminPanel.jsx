@@ -21,10 +21,11 @@ const AdminPanel = () => {
 
   const deleteUser = async (userId) => {
     try {
+      console.log("Deleting user with ID:", userId);
       await axios.delete(`http://localhost:3000/admin/users/${userId}`, {
         // may need to add authentication token also
       });
-      setUsers(users.filter((user) => user.id !== userId));
+      setUsers((prevUsers) => prevUsers.filter((user) => user._id !== userId));
     } catch (error) {
       console.error("Error deleting user:", error);
     }
@@ -41,6 +42,7 @@ const AdminPanel = () => {
                 src={user.url || "placeholder_image_url"}
                 alt="User Avatar"
                 style={{ width: "100px", height: "100px" }}
+                key={user.id}
               />
             </div>
             First Name: {user.first_name || "No First Name"}
@@ -49,7 +51,7 @@ const AdminPanel = () => {
             <br />
             Gender: {user.gender_identity || "Not Specified"}
             <br />
-            <button onClick={() => deleteUser(user.id)}>Delete</button>
+            <button onClick={() => deleteUser(user._id)}>Delete</button>
           </li>
         ))}
       </ul>
