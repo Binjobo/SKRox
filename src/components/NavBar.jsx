@@ -1,5 +1,6 @@
 import { useCookies } from "react-cookie";
 import { NavLink } from "react-router-dom";
+import SKRoxLogo from "../images/SKRoxLogo.png";
 
 const NavBar = () => {
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
@@ -8,7 +9,8 @@ const NavBar = () => {
   return (
     <>
       <nav>
-        SKRox-Logo
+        {/* <img src="../../images/SKRoxLogo.png"/> */}
+        <img src={SKRoxLogo} alt="logo" className="logo"></img>
         {authToken && (
           <ul>
             <li>

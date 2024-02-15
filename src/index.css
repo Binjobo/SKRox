@@ -53,13 +53,13 @@
 /* navbar */
 nav {
     margin-bottom: 50px;
-    background-color: rgb(153, 87, 177);
-    height: 7%;
+    background-color: rgb(42, 38, 44);
+    height: 12%;
   }
   
   ul {
     display: flex;
-    background-color: rgb(181, 58, 194);
+    background-color: rgb(44, 38, 45);
     width: 100%;
     justify-content: space-evenly;
     padding: 0;
@@ -77,4 +77,435 @@ nav {
 .chat-box {
   margin: auto;
   width: 28%;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* General styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* AdminPanelPage */
+.admin-panel {
+  margin: auto;
+  width: 80%;
+}
+
+.admin-panel h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.admin-panel ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.admin-panel li {
+  margin-bottom: 20px;
+}
+
+.admin-panel img {
+  display: block;
+  margin: 0 auto;
+  border-radius: 50%;
+}
+
+.admin-panel button {
+  display: block;
+  margin: 10px auto;
+  padding: 10px 20px;
+  background-color: #ff6347;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* AuthPage */
+.auth-page {
+  text-align: center;
+}
+
+.auth-page .home {
+  margin-top: 50px;
+}
+
+.auth-page h1, .auth-page h2 {
+  color: #333;
+}
+
+.auth-page .login-signup {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* ChatPage */
+.chat-page {
+  margin: auto;
+  width: 80%;
+}
+
+/* Homepage */
+.homepage {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.homepage h1 {
+  color: #333;
+}
+
+.homepage button {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* MatchPage */
+/* .match-page {
+  margin: auto;
+  width: 80%;
+} */
+
+/* .match-page .swipe-container {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+} */
+
+.match-page .card-container {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  /* overflow: hidden; */
+  border-radius: 20px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* .match-page .card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  border-radius: 20px;
+  overflow: hidden;
+} */
+
+/* .match-page .card h3 {
+  margin: 10px;
+  color: #fff;
+} */
+
+/* .match-page .swipe-info {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 10px 20px;
+  border-radius: 10px;
+} */
+
+/* ProfileAndPreferencePage */
+.profile-preference {
+  margin: auto;
+  width: 80%;
+}
+
+.profile-preference h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.profile-preference form {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.profile-preference label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.profile-preference input,
+.profile-preference select,
+.profile-preference textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.profile-preference input[type="submit"] {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+/* Components */
+
+/* Chat */
+.chat-box {
+  margin: auto;
+  width: 80%;
+}
+
+.chat-box .chat-box {
+  margin-top: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.chat-box .chat-box div {
+  margin-bottom: 10px;
+}
+
+.chat-box .chat-box img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.chat-box .chat-box p {
+  margin: 0;
+}
+
+/* ChatInput */
+.chat-input {
+  margin-top: 20px;
+}
+
+.chat-input textarea {
+  width: calc(100% - 80px);
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.chat-input button {
+  width: 80px;
+  padding: 10px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* LoginAndSignup */
+.login-signup-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-signup-modal h2 {
+  text-align: center;
+}
+
+.login-signup-modal form {
+  margin-top: 20px;
+}
+
+.login-signup-modal input,
+.login-signup-modal select {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.login-signup-modal input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.login-signup-modal p {
+  color: red;
+  margin-top: 10px;
+}
+
+/* MatchesDisplay */
+.matches-display {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.matches-display .match-card {
+  width: 200px;
+  margin-bottom: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.matches-display .match-card:hover {
+  transform: translateY(-5px);
+}
+
+.matches-display .match-card .img-container {
+  height: 200px;
+  overflow: hidden;
+}
+
+.matches-display .match-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.matches-display .match-card h3 {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.matches-display .match-card button {
+  width: 100%;
+  padding: 10px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 0 0 10px 10px;
+  cursor: pointer;
+}
+
+.matches-display .match-card button:hover {
+  background-color: #45a049;
+}
+
+/* NavBar */
+nav {
+  background-color: #333;
+  padding: 10px 20px;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+nav ul li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+nav ul li a:hover {
+  background-color: #555;
+}
+
+
+nav {
+  background-color: #333;
+  padding: 10px 20px;
+  display: flex; /* Use flexbox */
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+}
+
+nav .logo {
+  margin-right: auto; /* Push logo to the left */
+  margin-left: auto; /* Push logo to the right */
+}
+
+
+.logo {
+  width: 80px;
+  height: 80px;
+}
+
+
+.home {
+  display: flex;
+  flex-direction: column; /* Ensure children stack vertically */
+  justify-content: center; /* Center children vertically */
+  align-items: center; /* Center children horizontally */
+  text-align: center; /* Align text center within .home */
+}
+
+.loginSignupClose {
+  background-color: rgb(196, 121, 121);
+  border-radius: 100px;
+}
+
+.form-group {
+  display: flex;
+  align-items: center; /* Align items vertically within the group */
+  margin-bottom: 10px; /* Add margin between groups */
+}
+
+/* Adjust label width as needed */
+.signup {
+  width: 120px; /* Set a fixed width for the labels */
+  margin-right: 10px; /* Add some space between label and input */
+}
+
+
+.loginSignupClose {
+  margin-bottom: 20px;
 }

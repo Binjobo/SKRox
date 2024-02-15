@@ -28,9 +28,25 @@ export async function signUp(userData) {
   return token;
 }
 
+export async function login(userData) {
+  const token = await usersAPI.login(userData);
+  localStorage.setItem("token", token);
+  return getUser();
+}
+
 //log out
 export function logOut() {
   localStorage.removeItem("token");
 }
 
+//admin
+export function getAdmin() {
+  const token = getToken();
+  return token ? JSON.parse(atob(token.split(".")[1])).user.isAdmin : null;
+}
 
+export async function allUsers() {
+  const users = await usersAPI.allUsers();
+  console.log("allUsers", users);
+  return users;
+}

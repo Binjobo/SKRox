@@ -56,7 +56,7 @@ const MatchesDisplay = ({ matches, setClickedUser }) => {
             <img src={match?.url} alt={match?.first_name + " profile"} />
           </div>
           <h3>{match?.first_name}</h3>
-          <button onClick={() => handleDelete(match.user_id)}>
+          <button className="deletebutton" onClick={() => handleDelete(match.user_id)}>
             Delete Match
           </button>
         </div>

@@ -46,7 +46,14 @@ const LoginAndSignup = ({ setShowModal, isSignUp }) => {
 
       const response = await axios.post(
         `http://localhost:3000/${isSignUp ? "signup" : "login"}`,
-        { email, password }
+        { email, password },
+        {
+          headers: {
+            Cookie: `AuthToken=${cookies.AuthToken}; UserId=${
+              cookies.UserId
+            }; isAdmin=${cookies.isAdmin || false}`, // Include cookies in the headers
+          },
+        }
       );
 
       const { token, userId, isAdmin } = response.data;
@@ -57,6 +64,7 @@ const LoginAndSignup = ({ setShowModal, isSignUp }) => {
       // setCookie("UserId", response.data.userId);
       setCookie("AuthToken", token);
       setCookie("UserId", userId);
+      setCookie("isAdmin", isAdmin);
 
       if (isAdmin) {
         // Redirect to admin panel route
@@ -85,61 +93,77 @@ const LoginAndSignup = ({ setShowModal, isSignUp }) => {
   return (
     <div>
       <div onClick={handleClick}>
-        <button>CLOSE</button>
+        <button className="loginSignupClose">Close</button>
       </div>
 
       <h2>{isSignUp ? "CREATE ACCOUNT" : "LOG IN"}</h2>
 
       <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="email"
-          required={true}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="password"
-          required={true}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        {isSignUp && (
+        <div className="form-group">
+          <label className="signup">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="email"
+            required={true}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          <label className="signup">Password</label>
           <input
             type="password"
-            id="password-check"
-            name="password-check"
-            placeholder="confirm password"
+            id="password"
+            name="password"
+            placeholder="password"
             required={true}
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
           />
+        </div>
+        {isSignUp && (
+          <div className="form-group">
+            <label className="signup">Confirm Password</label>
+            <input
+              type="password"
+              id="password-check"
+              name="password-check"
+              placeholder="confirm password"
+              required={true}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+          </div>
         )}
         {isSignUp && (
-          <select
-            id="gender"
-            name="gender"
-            value={gender}
-            required={true}
-            onChange={(e) => setGender(e.target.value)}
-          >
-            <option value="">Select Gender</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-          </select>
+          <div className="form-group">
+            <label className="signup">Gender</label>
+            <select
+              id="gender"
+              name="gender"
+              value={gender}
+              required={true}
+              onChange={(e) => setGender(e.target.value)}
+            >
+              <option value="">Select Gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
         )}
         {isSignUp && (
-          <input
-            type="height"
-            id="height"
-            name="height"
-            placeholder="height in cm"
-            required={true}
-            onChange={(e) => setHeight(e.target.value)}
-          />
+          <div className="form-group">
+            <label className="signup">Height</label>
+            <input
+              type="height"
+              id="height"
+              name="height"
+              placeholder="height in cm"
+              required={true}
+              onChange={(e) => setHeight(e.target.value)}
+            />
+          </div>
         )}
+
         <input type="submit" />
         <p>{error}</p>
       </form>
