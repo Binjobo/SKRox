@@ -2,7 +2,7 @@ import NavBar from "../../components/NavBar";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 
-export default function HomePage({ user }) {
+export default function HomePage() {
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
   const navigate = useNavigate();
 
