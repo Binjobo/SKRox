@@ -2,14 +2,13 @@ import MatchesDisplay from "./MatchesDisplay";
 import ChatDisplay from "./ChatDisplay";
 import { useState } from "react";
 
-const ChatContainer = ({ user }) => {
+const ChatBox = ({ user }) => {
   const [clickedUser, setClickedUser] = useState(null);
 
   console.log("clickedUser", clickedUser);
 
   return (
-    <div className="chat-container">
-
+    <div className="chat-box">
       <div>
         <button className="option" onClick={() => setClickedUser(null)}>
           Matches
@@ -31,4 +30,4 @@ const ChatContainer = ({ user }) => {
   );
 };
 
-export default ChatContainer;
+export default ChatBox;

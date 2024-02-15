@@ -4,6 +4,7 @@ import ProfileAndPreference from "../ProfileAndPreferencePage/ProfileAndPreferen
 import { Routes, Route } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { useState } from "react";
+import AdminPanel from "../Admin/AdminPanel";
 
 import HomePage from "../HomePage/HomePage";
 import ChatPage from "../ChatPage/ChatPage";
@@ -35,6 +36,7 @@ export default function App() {
             element={<ChatPage user={user} setUser={setUser} />}
           />
         )}
+        {authToken && <Route path="/adminpanel" element={<AdminPanel />} />}
       </Routes>
     </div>
   );

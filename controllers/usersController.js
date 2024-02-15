@@ -10,7 +10,13 @@ const { v4: uuidv4 } = require("uuid");
 function createJWT(user) {
   return jwt.sign(
     // data payload
-    { user },
+    // { user },
+    {
+      user: {
+        id: user.id,
+        isAdmin: user.isAdmin, // Include isAdmin status in the payload
+      },
+    },
     process.env.SECRET,
     { expiresIn: "24h" }
   );
@@ -67,6 +73,13 @@ const signup = async (req, res) => {
     await newUser.save();
 
     const token = createJWT(newUser);
+
+    // // Generate JWT token with isAdmin set to false
+    // const token = jwt.sign(
+    //   { userId: newUser._id, isAdmin: false },
+    //   process.env.SECRET
+    // );
+
     console.log(req.body);
 
     res.status(201).json({ token, userId: newUser.user_id });
@@ -93,7 +106,16 @@ const login = async (req, res) => {
       return;
     }
     const token = createJWT(user);
-    res.status(201).json({ token, userId: user.user_id });
+
+    // // Generate JWT token with isAdmin included in the payload
+    // const token = jwt.sign(
+    //   { userId: user._id, isAdmin: user.isAdmin },
+    //   process.env.SECRET
+    // );
+
+    res
+      .status(201)
+      .json({ token, userId: user.user_id, isAdmin: user.isAdmin });
   } catch (err) {
     console.error(err);
     res.status(500).send("Server Error");
@@ -165,7 +187,23 @@ const deleteMatch = async (req, res) => {
   }
 };
 
-// const deleteAccount = async (req, res) => {};
+const getAllUsers = async (req, res, next) => {
+  try {
+    const users = await User.find();
+    res.json(users);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const deleteUser = async (req, res, next) => {
+  try {
+    await User.findByIdAndDelete(req.params.userId);
+    res.json({ message: "User deleted successfully" });
+  } catch (error) {
+    next(error);
+  }
+};
 
 module.exports = {
   signup,
@@ -176,5 +214,6 @@ module.exports = {
   getGenderedUsers,
   addMatch,
   deleteMatch,
-  // deleteAccount,
+  getAllUsers,
+  deleteUser,
 };

@@ -69,6 +69,10 @@ const userSchema = new Schema(
         user_id: String,
       },
     ],
+    isAdmin: {
+      type: Boolean,
+      default: false, // New field indicating whether the user is an admin
+    },
   },
   {
     timestamps: true,

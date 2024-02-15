@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 
-const AuthModal = ({ setShowModal, isSignUp }) => {
+const LoginAndSignup = ({ setShowModal, isSignUp }) => {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [confirmPassword, setConfirmPassword] = useState(null);
@@ -49,12 +49,28 @@ const AuthModal = ({ setShowModal, isSignUp }) => {
         { email, password }
       );
 
-      setCookie("AuthToken", response.data.token);
-      setCookie("UserId", response.data.userId);
+      const { token, userId, isAdmin } = response.data;
 
-      const success = response.status === 201;
-      if (success && isSignUp) navigate("/profile");
-      if (success && !isSignUp) navigate("/homepage");
+      console.log("TEST", isAdmin);
+
+      // setCookie("AuthToken", response.data.token);
+      // setCookie("UserId", response.data.userId);
+      setCookie("AuthToken", token);
+      setCookie("UserId", userId);
+
+      if (isAdmin) {
+        // Redirect to admin panel route
+        navigate("/adminpanel");
+      } else {
+        // if (isSignUp) {
+        //   navigate("/profile");
+        // } else {
+        //   navigate("/homepage");
+        // }
+        const success = response.status === 201;
+        if (success && isSignUp) navigate("/profile");
+        if (success && !isSignUp) navigate("/homepage");
+      }
 
       window.location.reload();
     } catch (error) {
@@ -130,4 +146,4 @@ const AuthModal = ({ setShowModal, isSignUp }) => {
     </div>
   );
 };
-export default AuthModal;
+export default LoginAndSignup;

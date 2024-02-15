@@ -1,11 +1,11 @@
-import ChatContainer from "../../components/ChatBox";
+import ChatBox from "../../components/ChatBox";
 import NavBar from "../../components/NavBar";
 
 const ChatPage = ({ user, setUser }) => {
   return (
     <>
       <NavBar />
-      <ChatContainer user={user} setUser={setUser} />
+      <ChatBox user={user} setUser={setUser} />
     </>
   );
 };
