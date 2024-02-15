@@ -36,13 +36,13 @@ const AdminPanel = () => {
       <h2>Admin Panel</h2>
       <ul>
         {users.map((user) => (
-          <li key={user.id}>
+          <li key={user._id}>
             <div>
               <img
                 src={user.url || "placeholder_image_url"}
                 alt="User Avatar"
                 style={{ width: "100px", height: "100px" }}
-                key={user.id}
+                key={user._id}
               />
             </div>
             First Name: {user.first_name || "No First Name"}
