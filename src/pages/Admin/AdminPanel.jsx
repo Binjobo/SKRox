@@ -36,7 +36,7 @@ const AdminPanel = () => {
       <h2>Admin Panel</h2>
       <ul>
         {users.map((user) => (
-          <li key={user._id}>
+          <li className="adminInfo" key={user._id}>
             <div>
               <img
                 src={user.url || "placeholder_image_url"}

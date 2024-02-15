@@ -509,3 +509,11 @@ nav .logo {
 .loginSignupClose {
   margin-bottom: 20px;
 }
+
+ul {
+  list-style: none; /* Remove default list-style */
+}
+
+.adminInfo {
+  background-color: #b16599;
+}
