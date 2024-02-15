@@ -5,15 +5,12 @@ import { Routes, Route } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { useState } from "react";
 import AdminPanel from "../Admin/AdminPanel";
-
 import HomePage from "../HomePage/HomePage";
 import ChatPage from "../ChatPage/ChatPage";
 
 export default function App() {
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
-
   const [user, setUser] = useState(null);
-
   const authToken = cookies.AuthToken;
 
   return (

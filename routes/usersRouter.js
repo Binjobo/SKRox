@@ -20,24 +20,17 @@ router.put("/user", userController.updateUser);
 //delete
 router.delete("/removematch", userController.deleteMatch);
 
-// // get all users (admin route)
-// router.get("/users", isAdmin, userController.getAllUsers);
-// router.delete("/users/:userId", isAdmin, userController.deleteUser);
-
-// // Admin routes
-router.get("/admin/users", authenticate, isAdmin, userController.getAllUsers); // Protected admin route to get all users
-// router.delete('/admin/users/:id', isAdmin, userController.deleteUser); // Protected admin route to delete a user
-
-// //protected user route
-// router.get("/user-auth", authenticate, (req, res) => {
-//   res.status(200).send;
-//   ({ ok: true });
-// });
-
-// //protected admin route
-// router.get("/admin-auth", authenticate, isAdmin, (req, res) => {
-//   res.status(200).send;
-//   ({ ok: true });
-// });
+// Admin routes
+router.get(
+  "/admin/users",
+  // authenticate, isAdmin,
+  userController.getAllUsers
+);
+router.delete(
+  "/admin/users/:id",
+  authenticate,
+  isAdmin,
+  userController.deleteUser
+);
 
 module.exports = router;

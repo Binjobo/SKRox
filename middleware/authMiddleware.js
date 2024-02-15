@@ -1,16 +1,16 @@
-// Auth Middleware (authMiddleware.js)
 const jwt = require("jsonwebtoken");
 
 // Middleware function to verify JWT token
 const authenticate = (req, res, next) => {
-  const token = req.header("Authorization");
+  // const token = req.header("Authorization");
+  const token = req.get("Authorization")?.split(" ")?.[1];
 
   if (!token) {
     return res.status(401).json({ message: "No token, authorization denied" });
   }
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, process.env.SECRET);
     req.user = decoded.user;
     next();
   } catch (error) {
@@ -18,15 +18,13 @@ const authenticate = (req, res, next) => {
   }
 };
 
-// Middleware function to check if user is admin
+// to check if user is admin
 const isAdmin = (req, res, next) => {
   if (!req.user || !req.user.isAdmin) {
     return res.status(403).json({ message: "Unauthorized access" });
   }
   next();
 };
-
-// middleware/authMiddleware.js
 
 // const jwt = require("jsonwebtoken");
 

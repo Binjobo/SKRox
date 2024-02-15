@@ -187,21 +187,24 @@ const deleteMatch = async (req, res) => {
   }
 };
 
-const getAllUsers = async (req, res, next) => {
+const getAllUsers = async (req, res) => {
   try {
-    const users = await User.find();
-    res.json(users);
-  } catch (error) {
-    next(error);
+    const foundUsers = await User.find({}).select(
+      "email first_name gender_identity url"
+    );
+    res.json(foundUsers);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
   }
 };
 
-const deleteUser = async (req, res, next) => {
+const deleteUser = async (req, res) => {
   try {
     await User.findByIdAndDelete(req.params.userId);
     res.json({ message: "User deleted successfully" });
   } catch (error) {
-    next(error);
+    console.log(error);
   }
 };
 

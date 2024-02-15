@@ -1,4 +1,3 @@
-// AdminPanel.jsx
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -12,7 +11,7 @@ const AdminPanel = () => {
   const fetchUsers = async () => {
     try {
       const response = await axios.get("http://localhost:3000/admin/users", {
-        // Add authentication token if required
+        // may need to add authentication token also
       });
       setUsers(response.data);
     } catch (error) {
@@ -23,7 +22,7 @@ const AdminPanel = () => {
   const deleteUser = async (userId) => {
     try {
       await axios.delete(`http://localhost:3000/admin/users/${userId}`, {
-        // Add authentication token if required
+        // may need to add authentication token also
       });
       setUsers(users.filter((user) => user.id !== userId));
     } catch (error) {
@@ -37,7 +36,19 @@ const AdminPanel = () => {
       <ul>
         {users.map((user) => (
           <li key={user.id}>
-            {user.email}
+            <div>
+              <img
+                src={user.url || "placeholder_image_url"}
+                alt="User Avatar"
+                style={{ width: "100px", height: "100px" }}
+              />
+            </div>
+            First Name: {user.first_name || "No First Name"}
+            <br />
+            Email: {user.email}
+            <br />
+            Gender: {user.gender_identity || "Not Specified"}
+            <br />
             <button onClick={() => deleteUser(user.id)}>Delete</button>
           </li>
         ))}
@@ -47,11 +58,3 @@ const AdminPanel = () => {
 };
 
 export default AdminPanel;
-
-// export default function AdminPanel () {
-//   return (
-//     <div>
-//       ADMIN PANEL
-//     </div>
-//   )
-// }
