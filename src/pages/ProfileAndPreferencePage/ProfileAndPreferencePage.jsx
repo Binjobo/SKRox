@@ -69,37 +69,39 @@ const ProfileAndPreference = () => {
               onChange={handleChange}
             />
 
-            <label>Birthday</label>
-            <div className="birthday">
-              <input
-                id="dob_day"
-                type="number"
-                name="dob_day"
-                placeholder="DD"
-                required={true}
-                value={formData.dob_day}
-                onChange={handleChange}
-              />
+            <div className="birthday-inputs">
+              <label>Birthday</label>
+              <div className="birthday">
+                <input
+                  id="dob_day"
+                  type="number"
+                  name="dob_day"
+                  placeholder="DD"
+                  required={true}
+                  value={formData.dob_day}
+                  onChange={handleChange}
+                />
 
-              <input
-                id="dob_month"
-                type="number"
-                name="dob_month"
-                placeholder="MM"
-                required={true}
-                value={formData.dob_month}
-                onChange={handleChange}
-              />
+                <input
+                  id="dob_month"
+                  type="number"
+                  name="dob_month"
+                  placeholder="MM"
+                  required={true}
+                  value={formData.dob_month}
+                  onChange={handleChange}
+                />
 
-              <input
-                id="dob_year"
-                type="number"
-                name="dob_year"
-                placeholder="YYYY"
-                required={true}
-                value={formData.dob_year}
-                onChange={handleChange}
-              />
+                <input
+                  id="dob_year"
+                  type="number"
+                  name="dob_year"
+                  placeholder="YYYY"
+                  required={true}
+                  value={formData.dob_year}
+                  onChange={handleChange}
+                />
+              </div>
             </div>
 
             <label>Gender</label>

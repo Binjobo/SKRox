@@ -47,6 +47,7 @@
     position: absolute;
     bottom: 0;
     padding: 10px;
+    margin-bottom: 50px;
 }
 
 
@@ -516,4 +517,56 @@ ul {
 
 .adminInfo {
   background-color: #b16599;
+}
+
+.birthday {
+  display: flex;
+  align-items: center; 
+}
+
+.birthday label {
+  margin-right: 10px; 
+}
+
+.birthday input {
+  margin-right: 5px; 
+}
+
+.match-page {
+  margin: auto;
+  width: 28%;
+}
+
+.swipe {
+  position: relative; /* Change to relative */
+}
+
+.card-container {
+  position: relative; /* Change to relative */
+  width: 400px;
+  height: 650px;
+}
+
+.card {
+  width: 400px;
+  height: 650px;
+  border-radius: 30px;
+  background-size: cover;
+  background-position: center;
+}
+
+.card h3 {
+  margin-top: 0;
+}
+
+.swipe-info {
+  position: absolute;
+  bottom: -550px; 
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 10px 20px;
+  border-radius: 10px;
+  width: 100%; /* Ensure full width */
+  text-align: center; /* Center text */
 }

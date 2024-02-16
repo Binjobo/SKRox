@@ -15,7 +15,7 @@ export default function HomePage() {
   return (
     <>
       <NavBar />
-      <h1>HomePage!</h1>
+      <h1>A place to find love and not get judged for your height</h1>
       <button onClick={logout}>Log out</button>
     </>
   );
