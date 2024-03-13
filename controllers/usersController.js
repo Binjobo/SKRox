@@ -104,10 +104,7 @@ const login = async (req, res) => {
       return;
     }
     const token = createJWT(user);
-
-    res.cookie("token", token, {
-      httpOnly: true,
-    });
+    
 
     // // Generate JWT token with isAdmin included in the payload
     // const token = jwt.sign(

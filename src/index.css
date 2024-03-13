@@ -21,10 +21,6 @@
   /* border: 3px solid rgb(18, 36, 18);
   padding: 10px; */
 }
-
-.swipe {
-    position: absolute;
-  }
   
 .dashboard .card-container {
     width: 400px;
@@ -537,10 +533,6 @@ ul {
   width: 28%;
 }
 
-.swipe {
-  position: relative; /* Change to relative */
-}
-
 .card-container {
   position: relative; /* Change to relative */
   width: 400px;
@@ -570,3 +562,8 @@ ul {
   width: 100%; /* Ensure full width */
   text-align: center; /* Center text */
 }
+
+.swipe {
+  position: absolute;
+}
+

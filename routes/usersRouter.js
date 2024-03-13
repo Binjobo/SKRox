@@ -2,10 +2,9 @@ const express = require("express");
 const router = express.Router();
 const userController = require("../controllers/usersController");
 
-const {
-  // isAdmin,
-  authenticate,
-} = require("../middleware/authMiddleware.js"); //new
+const { 
+  // isAdmin, 
+  authenticate } = require("../middleware/authMiddleware.js"); //new
 
 //get
 router.get("/user", userController.getUser);
@@ -26,7 +25,7 @@ router.delete("/removematch", userController.deleteMatch);
 // Admin routes
 router.get(
   "/admin/users",
-  // authenticate,
+  authenticate,
   // isAdmin,
   userController.getAllUsers
 );
